@@ -11841,11 +11841,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Anuitex\\source\\repos\\andrusyshynnikita\\TestProjectAngular\\TestProjectAngular.Core\\TestProjectAngular.Core\\TestProjectAngular.Core.csproj",
-      "projectName": "TestProjectAngular.Core",
-      "projectPath": "C:\\Users\\Anuitex\\source\\repos\\andrusyshynnikita\\TestProjectAngular\\TestProjectAngular.Core\\TestProjectAngular.Core\\TestProjectAngular.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Anuitex\\source\\repos\\andrusyshynnikita\\TestProjectAngular\\TestProjectAngular.API\\TestProjectAngular.Core\\TestProjectAngular.API.csproj",
+      "projectName": "TestProjectAngular.API",
+      "projectPath": "C:\\Users\\Anuitex\\source\\repos\\andrusyshynnikita\\TestProjectAngular\\TestProjectAngular.API\\TestProjectAngular.Core\\TestProjectAngular.API.csproj",
       "packagesPath": "C:\\Users\\Anuitex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Anuitex\\source\\repos\\andrusyshynnikita\\TestProjectAngular\\TestProjectAngular.Core\\TestProjectAngular.Core\\obj\\",
+      "outputPath": "C:\\Users\\Anuitex\\source\\repos\\andrusyshynnikita\\TestProjectAngular\\TestProjectAngular.API\\TestProjectAngular.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
