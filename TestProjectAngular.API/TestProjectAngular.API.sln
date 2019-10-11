@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectAngular.API", "TestProjectAngular.Core\TestProjectAngular.API.csproj", "{E81925E2-C062-4839-8757-EA36FA9D9B5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectAngular.API", "TestProjectAngular.API\TestProjectAngular.API.csproj", "{E81925E2-C062-4839-8757-EA36FA9D9B5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectAngular.API.Common", "TestProjectAngular.API.Common\TestProjectAngular.API.Common.csproj", "{9A947C75-598A-42B2-9AEC-03C0BC8BE33E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectAngular.API.BLL", "TestProjectAngular.API.BLL\TestProjectAngular.API.BLL.csproj", "{A12282C1-F071-4916-8AE6-6CA4906E005E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectAngular.API.DAL", "TestProjectAngular.API.DAL\TestProjectAngular.API.DAL.csproj", "{9090ED7E-EEE6-4A70-87DA-AE4295F68DE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{E81925E2-C062-4839-8757-EA36FA9D9B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E81925E2-C062-4839-8757-EA36FA9D9B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E81925E2-C062-4839-8757-EA36FA9D9B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A947C75-598A-42B2-9AEC-03C0BC8BE33E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A947C75-598A-42B2-9AEC-03C0BC8BE33E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A947C75-598A-42B2-9AEC-03C0BC8BE33E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A947C75-598A-42B2-9AEC-03C0BC8BE33E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12282C1-F071-4916-8AE6-6CA4906E005E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12282C1-F071-4916-8AE6-6CA4906E005E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12282C1-F071-4916-8AE6-6CA4906E005E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12282C1-F071-4916-8AE6-6CA4906E005E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9090ED7E-EEE6-4A70-87DA-AE4295F68DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9090ED7E-EEE6-4A70-87DA-AE4295F68DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9090ED7E-EEE6-4A70-87DA-AE4295F68DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9090ED7E-EEE6-4A70-87DA-AE4295F68DE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
