@@ -2,31 +2,30 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './Modules/core/components/top-bar/top-bar.component';
-import { ProductListComponent } from './Modules/core/components/product-list/product-list.component';
+import { ProductListComponent as TasksListComponent } from './Modules/core/components/product-list/product-list.component';
 import {ProductAlertsComponent} from './Modules/core/components/product-alerts/product-alerts.component';
-import {ProductDetailsComponent} from './Modules/core/components/product-details/product-details.component';
-
-import {CartService} from './Modules/core/Services/cart-service/cart.service';
+import {ProductDetailsComponent as TaskDetailsComponent} from './Modules/core/components/product-details/product-details.component';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      {path: 'products/:productId', component: ProductDetailsComponent},
+      { path: '', component: TasksListComponent },
+      {path: 'products/:productId', component: TaskDetailsComponent},
     ])
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    ProductListComponent,
+    TasksListComponent,
     ProductAlertsComponent,
-    ProductDetailsComponent,
-    CartService
+    TaskDetailsComponent,
   ],
   bootstrap: [ AppComponent ]
 })

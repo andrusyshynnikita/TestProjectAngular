@@ -1,19 +1,19 @@
-<h2>Products</h2>
+<h2>Tasks</h2>
 
-<div *ngFor="let product of products index as productId">
+<div *ngFor="let task of tasks index as taskIndex">
     <h3>
-        <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
-            {{ product.name }}
+        <a [title]="task.title + ' details'" [routerLink]="['/products', taskIndex]">
+            {{ task.title }}
         </a>
     </h3>
-    <p *ngIf="product.description">
-        Description: {{ product.description }}
+    <p *ngIf="task.description">
+        Description: {{ task.description }}
     </p>
     <button (click)="share()">
       Share
     </button>
     <app-product-alerts
-  [product]="product"
+  [product]="tasks"
   (notify)="onNotify()">
 </app-product-alerts>
 </div>

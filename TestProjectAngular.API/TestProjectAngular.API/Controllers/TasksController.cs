@@ -20,15 +20,17 @@ namespace WeAPICore.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ResponseRequestViewModel<IEnumerable<TaskViewModel>>> GetTasks(string id)
+        public async Task<IEnumerable<TaskViewModel>> GetTasks(string id)
         {
             var result = new ResponseRequestViewModel<IEnumerable<TaskViewModel>>();
 
             IEnumerable<TaskViewModel> tasks = await _taskService.GetTasks(id);
-            result.ResponseData = tasks;
-            result.IsSuccess = true;
 
-            return result;
+            return tasks;
+            //result.ResponseData = tasks;
+            //result.IsSuccess = true;
+
+            //return result;
         }
 
         [HttpDelete("{id}")]
