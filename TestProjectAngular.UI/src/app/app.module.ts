@@ -6,9 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './Modules/core/components/top-bar/top-bar.component';
-import { ProductListComponent as TasksListComponent } from './Modules/core/components/product-list/product-list.component';
-import {ProductAlertsComponent} from './Modules/core/components/product-alerts/product-alerts.component';
-import {ProductDetailsComponent as TaskDetailsComponent} from './Modules/core/components/product-details/product-details.component';
+import { TodoListComponent  } from './Modules/core/components/todo-list/todo-list.component';
+import {TodoDetailsComponent} from './Modules/core/components/todo-details/todo-details.component';
 
 @NgModule({
   imports: [
@@ -16,16 +15,15 @@ import {ProductDetailsComponent as TaskDetailsComponent} from './Modules/core/co
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: TasksListComponent },
-      {path: 'products/:productId', component: TaskDetailsComponent},
+      { path: '', component: TodoListComponent },
+      {path: 'products/:productId', component: TodoDetailsComponent},
     ])
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    TasksListComponent,
-    ProductAlertsComponent,
-    TaskDetailsComponent,
+    TodoListComponent,
+    TodoDetailsComponent,
   ],
   bootstrap: [ AppComponent ]
 })

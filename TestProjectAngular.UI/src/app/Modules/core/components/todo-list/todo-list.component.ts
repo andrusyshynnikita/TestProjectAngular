@@ -4,11 +4,11 @@ import { TaskService } from '../../Services/tasks-service/tasks.service';
 import { Task } from '../../models/task.model';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  selector: 'app-todo-list',
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class TodoListComponent implements OnInit {
   tasks: Task[];
 
 
@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasksService.getItems().subscribe(data => {
+    this.tasksService.getTasks().subscribe(data => {
       debugger;
       this.tasks = data;
     },

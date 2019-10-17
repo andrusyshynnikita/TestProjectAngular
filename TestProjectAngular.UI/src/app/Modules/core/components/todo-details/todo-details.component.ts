@@ -4,12 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../Services/tasks-service/tasks.service';
 
 @Component({
-    selector: 'app-product-details',
-    templateUrl: 'product-details.component.html',
-    styleUrls: ['product-details.component.scss']
+    selector: 'app-todo-details',
+    templateUrl: 'todo-details.component.html',
+    styleUrls: ['todo-details.component.scss']
 })
 
-export class ProductDetailsComponent implements OnInit {
+export class TodoDetailsComponent implements OnInit {
   product;
 
   constructor(
@@ -22,10 +22,5 @@ export class ProductDetailsComponent implements OnInit {
     debugger;
     this.route.paramMap.subscribe(params => {
     });
-  }
-
-  addToCart(product) {
-    window.alert('Your product has been added to the cart!');
-    this.cartService.addToCart(product);
   }
 }

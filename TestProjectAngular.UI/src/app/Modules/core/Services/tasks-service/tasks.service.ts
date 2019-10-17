@@ -7,20 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TaskService {
-  tasks: string[];
 
   constructor(private httpService: HttpClient) { }
 
-  addToCart(product) {
-    this.tasks.push(product);
-  }
-
-  getItems(): Observable<Task[]> {
+  getTasks(): Observable<Task[]> {
     return this.httpService.get<Task[]>('http://localhost:3010/api/tasks/GetTasks/1', );
   }
 
-  clearCart() {
-    this.tasks = [];
-    return this.tasks;
-  }
+deleteTask(id: number){
+  return this.httpService.delete('http://localhost:3010/api/tasks/DeleteTasks{}')
+}
 }
