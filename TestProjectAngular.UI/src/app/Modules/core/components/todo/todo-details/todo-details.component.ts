@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TaskService } from '../../Services/tasks-service/tasks.service';
+import { TodoService } from '../../../Services/todo-service/todo.service';
 
 @Component({
     selector: 'app-todo-details',
@@ -14,7 +14,7 @@ export class TodoDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cartService: TaskService
+    private cartService: TodoService
   ) { }
 
   ngOnInit() {

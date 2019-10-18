@@ -45,7 +45,11 @@ namespace WeAPICore
                 app.UseHsts();
             }
 
-            app.UseCors(options => options.WithOrigins("http://localhost:4200").AllowAnyMethod());
+            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowCredentials());
 
             app.UseHttpsRedirection();
             app.UseMvc();

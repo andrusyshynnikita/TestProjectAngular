@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TaskService } from '../../Services/tasks-service/tasks.service';
-import { Task } from '../../models/task.model';
+import { TodoService } from '../../../Services/todo-service/todo.service';
+import { Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,11 +9,10 @@ import { Task } from '../../models/task.model';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  tasks: Task[];
-
+  todos: Todo[];
 
   constructor(
-    private tasksService: TaskService
+    private todoService: TodoService
   ) { }
 
   share() {
@@ -24,11 +23,15 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tasksService.getTasks().subscribe(data => {
-      debugger;
-      this.tasks = data;
+    this.todoService.getTodos().subscribe(todos => {
+      this.todos = todos;
     },
     );
+  }
+
+  deleteTodo(id: number) {
+    debugger;
+     this.todos = this.todos.filter(item => item.id !== id);
   }
 }
 

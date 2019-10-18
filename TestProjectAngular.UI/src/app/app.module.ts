@@ -5,9 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './Modules/core/components/top-bar/top-bar.component';
-import { TodoListComponent  } from './Modules/core/components/todo-list/todo-list.component';
-import {TodoDetailsComponent} from './Modules/core/components/todo-details/todo-details.component';
+import { TopBarComponent } from './Modules/core/components/layout/top-bar/top-bar.component';
+import { TodoListComponent  } from './Modules/core/components/todo/todo-list/todo-list.component';
+import {TodoDetailsComponent} from './Modules/core/components/todo/todo-details/todo-details.component';
+import { TodoItemComponent } from './Modules/core/components/todo/todo-item/todo-item.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import {TodoDetailsComponent} from './Modules/core/components/todo-details/todo-
     TopBarComponent,
     TodoListComponent,
     TodoDetailsComponent,
+    TodoItemComponent
   ],
   bootstrap: [ AppComponent ]
 })
