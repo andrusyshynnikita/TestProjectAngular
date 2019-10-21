@@ -8,6 +8,7 @@ import { TodoService } from '../../../Services/todo-service/todo.service';
   styleUrls: ['./todo-item.component.scss']
 })
 export class TodoItemComponent implements OnInit {
+
   @Input() todo: Todo;
   @Output() deleteTodo: EventEmitter<number> = new EventEmitter();
 

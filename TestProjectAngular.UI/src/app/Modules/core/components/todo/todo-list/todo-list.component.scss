@@ -2,8 +2,20 @@ h2.headertekst {
   text-align: center;
 }
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+.button {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50%;
+}
+
+a.addButton {
+  margin: 5px;
+  background-color: #333;
+}

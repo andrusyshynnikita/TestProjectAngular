@@ -33,6 +33,20 @@ namespace WeAPICore.Controllers
             //return result;
         }
 
+        [HttpGet("{id}&{taskId}")]
+        public async Task<IEnumerable<TaskViewModel>> GetPrivateTask(string userId, int taskId)
+        {
+            var result = new ResponseRequestViewModel<IEnumerable<TaskViewModel>>();
+
+            IEnumerable<TaskViewModel> tasks = await _taskService.GetTasks(userId);
+
+            return tasks;
+            //result.ResponseData = tasks;
+            //result.IsSuccess = true;
+
+            //return result;
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTasks(int id)
         {

@@ -2,7 +2,7 @@
 
 * {
   font-family: 'Roboto', Arial, sans-serif;
-  color: #616161;
+  // color: #616161;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -125,3 +125,6 @@ Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

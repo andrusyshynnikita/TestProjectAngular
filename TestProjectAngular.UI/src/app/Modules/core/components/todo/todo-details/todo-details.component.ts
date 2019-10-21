@@ -10,12 +10,12 @@ import { TodoService } from '../../../Services/todo-service/todo.service';
 })
 
 export class TodoDetailsComponent implements OnInit {
+
   product;
 
   constructor(
     private route: ActivatedRoute,
-    private cartService: TodoService
-  ) { }
+    private cartService: TodoService) { }
 
   ngOnInit() {
     // tslint:disable-next-line: no-debugger

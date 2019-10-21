@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from '../../models/todo.model';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,6 +28,11 @@ export class TodoService {
 
   toggeleCompleted(todo: Todo): Observable<any> {
     return this.http.post<any>(`${this.todosUrl}PostTask`, todo, httpOptions);
-    // return this.http.delete<any>(`${this.todosUrl}DeleteTasks/1`);
   }
+
+  addTask(todo: Todo): Observable<any> {
+    debugger;
+    return this.http.post<any>(`${this.todosUrl}PostTask`, todo, httpOptions);
+  }
+
 }
