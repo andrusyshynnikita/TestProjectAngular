@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { TodoService } from '../../../Services/todo-service/todo.service';
+import { TodosStoreService } from '../../../Services/todosStorage-service/TodosStoreService.service';
 import { Todo } from '../../../models/todo.model';
 
 @Component({
@@ -11,12 +11,12 @@ import { Todo } from '../../../models/todo.model';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[];
+  todosTrackFn = (i, todo) => todo.id;
 
   constructor(
-    private todoService: TodoService,
     private route: ActivatedRoute,
     private router: Router,
+    public todoStorage: TodosStoreService
   ) { }
 
   share() {
@@ -27,11 +27,6 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.todoService.getTodos().subscribe(todos => {
-      debugger;
-      this.todos = todos;
-    },
-    );
   }
 
   addTodo() {
@@ -39,10 +34,10 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteTodo(id: number) {
-    this.todos = this.todos.filter(item => item.id !== id);
   }
 
   showTodoDetails(todo: Todo) {
-    this.router.navigate(['addTodo']);
+    debugger;
+    this.router.navigate(['todoDetails', todo.id]);
   }
 }

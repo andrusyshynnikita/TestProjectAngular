@@ -1,7 +1,5 @@
 <div
-[ngClass]="setClasses()"
-
->
+[ngClass]="setClasses()">
   <p>
     <input (change)="onToggle(todo)" [checked]="todo.status" type="checkbox"/>
     {{todo.title}}

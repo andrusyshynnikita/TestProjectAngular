@@ -1,8 +1,16 @@
-<h2>Product Details</h2>
-
-<div *ngIf="product">
-  <h3>{{ product.name }}</h3>
-  <h4>{{ product.price | currency }}</h4>
-  <p>{{ product.description }}</p>
-
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Todo Titile</mat-label>
+    <input matInput [(ngModel)]="todo.title">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Todo Description</mat-label>
+    <input matInput [(ngModel)]="todo.description">
+  </mat-form-field>
+  <p>
+    <mat-slide-toggle [(ngModel)]="todo.status">
+      Set completed todo
+    </mat-slide-toggle>
+    <button mat-raised-button color="green" (click)="onSubmit()">Save Todo</button>
+  </p>
 </div>

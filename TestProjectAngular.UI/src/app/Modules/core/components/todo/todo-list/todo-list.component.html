@@ -1,18 +1,13 @@
 <div>
-      <h2 class=" headertekst">Tasks</h2>
-      <p>
-          <a mat-fab class= "addButton" (click)="addTodo()" >
-              <mat-icon>add</mat-icon>
-          </a>
-          Add Todo
-      </p>
+  <h2 class=" headertekst">Tasks</h2>
+  <p>
+    <a mat-fab class="addButton" (click)="addTodo()">
+      <mat-icon>add</mat-icon>
+    </a>
+    Add Todo
+  </p>
 </div>
-<div
-*ngFor="let todo of todos index as taskIndex"
- >
-  <app-todo-item
-   [todo] =todo
-   (deleteTodo)="deleteTodo($event)">
+<div *ngFor="let todo of todoStorage.todos$ | async; trackBy: todosTrackFn" (click)="showTodoDetails(todo)">
+  <app-todo-item [todo]=todo (deleteTodo)="deleteTodo($event)">
   </app-todo-item>
 </div>
-

@@ -1,26 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-import { TodoService } from '../../../Services/todo-service/todo.service';
+import { switchMap } from 'rxjs/operators';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Todo } from '../../../models/todo.model';
+import { TodosStoreService } from '../../../Services//todosStorage-service/TodosStoreService.service';
+import { Location } from '@angular/common';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-    selector: 'app-todo-details',
-    templateUrl: 'todo-details.component.html',
-    styleUrls: ['todo-details.component.scss']
+  selector: 'app-todo-details',
+  templateUrl: 'todo-details.component.html',
+  styleUrls: ['todo-details.component.scss']
 })
 
 export class TodoDetailsComponent implements OnInit {
 
-  product;
+  @Output() addTodo: EventEmitter<any> = new EventEmitter();
+  todo: Todo;
 
-  constructor(
-    private route: ActivatedRoute,
-    private cartService: TodoService) { }
+  constructor(private todosStorageService: TodosStoreService, private location: Location, private route: ActivatedRoute) {
+    this.todo = new Todo();
+  }
 
   ngOnInit() {
-    // tslint:disable-next-line: no-debugger
+    let id = this.route.snapshot.paramMap.get('id');
+    this.todo = this.todosStorageService.getUserPrivateTask(id);
     debugger;
-    this.route.paramMap.subscribe(params => {
-    });
+  }
+
+  onSubmit() {
+    this.todo.user_Id = '1';
+    debugger;
+    this.todosStorageService.updateTodo(this.todo);
+    this.location.back();
   }
 }

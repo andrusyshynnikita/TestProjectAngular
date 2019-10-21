@@ -24,7 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: TodoListComponent },
-      { path: 'products/:productId', component: TodoDetailsComponent },
+      { path: 'todoDetails/:id', component: TodoDetailsComponent },
       { path: 'addTodo', component: AddTodoComponent },
     ]),
     BrowserAnimationsModule

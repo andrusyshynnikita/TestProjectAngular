@@ -1,1 +1,24 @@
-// component css goes here
+mat-form-field.mat-form-field {
+  font-size: 16px;
+  display: inline;
+}
+
+mat-form-field {
+  color: 'primary';
+}
+
+.mat-raised-button.mat-green {
+background-color: green;
+color: white;
+border-radius: 12px;
+margin: 10px;
+}
+/* CSS to change Default/'Accent' color */
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #333; /*replace with your color*/
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: green;  /*replace with your color*/
+}

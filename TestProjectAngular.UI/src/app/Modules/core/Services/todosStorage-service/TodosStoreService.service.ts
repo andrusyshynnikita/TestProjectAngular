@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { TodoService } from '../todo-service/todo.service';
 import { BehaviorSubject } from 'rxjs';
 import { Todo } from '../../models/todo.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodosStoreServiceService {
+export class TodosStoreService {
   private readonly _todos = new BehaviorSubject<Todo[]>([]);
   readonly todos$ = this._todos.asObservable();
 
@@ -20,6 +21,10 @@ export class TodosStoreServiceService {
 
   set todos(val: Todo[]) {
     this._todos.next(val);
+  }
+
+  getUserPrivateTask(id: string): Todo {
+    return this.todos.find(t => t.id.toString() === id);
   }
 
   async addTodo(todo: Todo) {
