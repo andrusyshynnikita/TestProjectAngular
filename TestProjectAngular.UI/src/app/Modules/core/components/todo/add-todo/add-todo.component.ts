@@ -25,10 +25,10 @@ export class AddTodoComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.todo.user_Id = '1';
     debugger;
-    this.todosStorageService.addTodo(this.todo);
+    await this.todosStorageService.addTodo(this.todo);
     this.location.back();
   }
 }

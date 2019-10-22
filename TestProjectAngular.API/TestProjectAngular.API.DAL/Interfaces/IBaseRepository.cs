@@ -11,7 +11,7 @@ namespace TestProjectAngular.API.DAL.Interfaces
 
         Task<TEntity> GetItem(int id);
 
-        Task Create(TEntity item);
+        Task<TEntity> Create(TEntity item);
 
         Task Update(TEntity item);
 

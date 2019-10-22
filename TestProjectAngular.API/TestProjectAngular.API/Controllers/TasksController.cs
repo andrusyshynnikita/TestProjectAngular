@@ -61,16 +61,11 @@ namespace WeAPICore.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostTask(TaskViewModel task)
+        public async Task<TaskViewModel> PostTask(TaskViewModel task)
         {
-            ResponseViewModel result = await _taskService.CreateOrUpdateTask(task);
+            TaskViewModel result = await _taskService.CreateOrUpdateTask(task);
 
-            if (result.IsSuccess)
-            {
-                return Ok();
-            }
-
-            return BadRequest();
+            return result;
         }
 
         [HttpGet("{id}")]

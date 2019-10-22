@@ -29,12 +29,12 @@ export class TodosStoreService {
 
   async addTodo(todo: Todo) {
     try {
-      await this.todosService
+      const result = await this.todosService
         .addTask(todo)
         .toPromise();
       this.todos = [
         ...this.todos,
-        todo
+        result
       ];
     } catch (e) {
       // is server sends back an error, we revert the changes

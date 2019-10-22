@@ -22,10 +22,12 @@ namespace TestProjectAngular.API.DAL.Repositories
             return DbSet.FindAsync(id);
         }
 
-        public async Task Create(TEntity entity)
+        public async Task<TEntity> Create(TEntity entity)
         {
-            DbSet.Add(entity);
+            var result = DbSet.Add(entity);
             await SaveChanges();
+
+            return result.Entity;
         }
 
         public async Task Update(TEntity entity)

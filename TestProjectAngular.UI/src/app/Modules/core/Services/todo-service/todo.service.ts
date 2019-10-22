@@ -30,9 +30,9 @@ export class TodoService {
     return this.http.post<any>(`${this.todosUrl}PostTask`, todo, httpOptions);
   }
 
-  addTask(todo: Todo): Observable<any> {
+  addTask(todo: Todo): Observable<Todo> {
     debugger;
-    return this.http.post<any>(`${this.todosUrl}PostTask`, todo, httpOptions);
+    return this.http.post<Todo>(`${this.todosUrl}PostTask`, todo, httpOptions);
   }
 
 }

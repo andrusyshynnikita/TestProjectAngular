@@ -42,28 +42,27 @@ namespace TestProjectAngular.API.BLL.Services
             return tasksviewModel;
         }
 
-        public async Task<ResponseViewModel> CreateOrUpdateTask(TaskViewModel taskViewModel)
+        public async Task<TaskViewModel> CreateOrUpdateTask(TaskViewModel taskViewModel)
         {
-            var responseViewModel = new ResponseViewModel();
 
             TaskDB task = _mapper.Map<TaskViewModel, TaskDB>(taskViewModel);
 
             if (task.Id == default(int))
             {
-                await _taskRepository.Create(task);
+                var savedTask = await _taskRepository.Create(task);
+                taskViewModel.Id = savedTask.Id;
             }
             else
             {
                 await _taskRepository.Update(task);
             }
-            responseViewModel.IsSuccess = true;
 
             if (!string.IsNullOrEmpty(taskViewModel.AudioFileName) && taskViewModel.AudioFileContent != null)
             {
-                responseViewModel.IsSuccess = await _storageHelper.WriteByteToFileAsync(taskViewModel.AudioFileName, taskViewModel.AudioFileContent);
+                await _storageHelper.WriteByteToFileAsync(taskViewModel.AudioFileName, taskViewModel.AudioFileContent);
             }
 
-            return responseViewModel;
+            return taskViewModel;
         }
 
         public async Task<ResponseViewModel> Delete(int id)
