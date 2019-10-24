@@ -10,5 +10,7 @@ namespace TestProjectAngular.API.DAL
         { }
 
         public DbSet<TaskDB> Tasks { get; set; }
+
+        public DbSet<UserDBModel> Users { get; set; }
     }
 }

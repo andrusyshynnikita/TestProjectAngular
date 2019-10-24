@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestProjectAngular.API.DAL;
 
 namespace TestProjectAngular.API.DAL.Migrations
 {
     [DbContext(typeof(TestProjectAngularAPICoreContext))]
-    partial class TestProjectAngularAPICoreContextModelSnapshot : ModelSnapshot
+    [Migration("20191024090419_addUserTable")]
+    partial class addUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

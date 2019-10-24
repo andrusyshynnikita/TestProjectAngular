@@ -14,7 +14,9 @@ namespace TestProjectAngular.API.DAL.Repositories
 
         public IEnumerable<TaskDB> GetAllUserTasks(string userId)
         {
-            IEnumerable<TaskDB> userTasks = DbSet.Where(x => x.User_Id == userId);
+            int tryparseUserId;
+            int.TryParse(userId, out tryparseUserId);
+            IEnumerable<TaskDB> userTasks = DbSet.Where(x => x.User_Id == tryparseUserId);
 
             return userTasks;
         }

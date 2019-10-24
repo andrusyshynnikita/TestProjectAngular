@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using TestProjectAngular.API;
+using TestProjectAngular.API.Common.Settings;
 using TestProjectAngular.API.DAL;
 
 namespace WeAPICore
@@ -20,20 +25,36 @@ namespace WeAPICore
         public IConfiguration Configuration { get; }
 
         public IHostingEnvironment HostingEnvironment { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
+            })
+                               .AddJwtBearer(options =>
+                               {
+                                   options.RequireHttpsMetadata = false;
+                                   options.SaveToken = true;
+                                   options.TokenValidationParameters = new TokenValidationParameters
+                                   {
+                                       ValidateIssuerSigningKey = true,
+                                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(AuthSettings.KEY)),
+                                       ValidateIssuer = false,
+                                       ValidateAudience = false
+                                   };
+                               });
             services.AddDbContextPool<TestProjectAngularAPICoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDataBase")));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             TestProjectAngular.API.BLL.Configuration.Setup(services, HostingEnvironment);
             TestProjectAngular.API.DAL.Configuration.Setup(services);
+
+
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -51,6 +72,7 @@ namespace WeAPICore
             .AllowAnyMethod()
             .AllowCredentials());
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

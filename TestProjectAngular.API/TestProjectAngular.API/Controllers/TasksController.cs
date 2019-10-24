@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestProjectAngular.API.BLL.Interfaces;
 using TestProjectAngular.API.Common.ViewModels;
@@ -10,6 +9,7 @@ namespace WeAPICore.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class TasksController : ControllerBase
     {
         private readonly ITaskService _taskService;
@@ -19,26 +19,16 @@ namespace WeAPICore.Controllers
             _taskService = taskService;
         }
 
+
+
+
+
         [HttpGet("{id}")]
         public async Task<IEnumerable<TaskViewModel>> GetTasks(string id)
         {
             var result = new ResponseRequestViewModel<IEnumerable<TaskViewModel>>();
 
             IEnumerable<TaskViewModel> tasks = await _taskService.GetTasks(id);
-
-            return tasks;
-            //result.ResponseData = tasks;
-            //result.IsSuccess = true;
-
-            //return result;
-        }
-
-        [HttpGet("{id}&{taskId}")]
-        public async Task<IEnumerable<TaskViewModel>> GetPrivateTask(string userId, int taskId)
-        {
-            var result = new ResponseRequestViewModel<IEnumerable<TaskViewModel>>();
-
-            IEnumerable<TaskViewModel> tasks = await _taskService.GetTasks(userId);
 
             return tasks;
             //result.ResponseData = tasks;

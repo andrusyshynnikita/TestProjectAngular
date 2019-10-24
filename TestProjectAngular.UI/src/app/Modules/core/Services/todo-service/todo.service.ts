@@ -3,9 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Todo } from '../../models/todo.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 
-const httpOptions = {
+let httpOptions = {
   headers: new HttpHeaders({
-    'Content-type': 'application/json'
+    'Content-type': 'application/json',
   })
 };
 

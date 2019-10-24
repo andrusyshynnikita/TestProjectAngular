@@ -4,8 +4,10 @@ using System.Text;
 
 namespace TestProjectAngular.API.Common.ViewModels
 {
-    public class ResponseRequestViewModel<T> : BaseViewModel
+    public class BaseViewModel
     {
-        public T ResponseData { get; set; }
+        public bool IsSuccess { get; set; }
+
+        public string Message { get; set; }
     }
 }
