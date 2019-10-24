@@ -19,7 +19,8 @@ export class TodoService {
   constructor(private http: HttpClient) { }
 
   getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`${this.todosUrl}GetTasks/1`);
+    debugger;
+    return this.http.get<Todo[]>(`${this.todosUrl}GetTasks/6`);
   }
 
   deleteTask(id: number) {

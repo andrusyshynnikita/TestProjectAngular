@@ -8,8 +8,9 @@ namespace TestProjectAngular.API.DAL.Interfaces
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {
+        IQueryable<TEntity> GetItems();
 
-        Task<TEntity> GetItem(int id);
+        Task<TEntity> FindItem(int id);
 
         Task<TEntity> Create(TEntity item);
 

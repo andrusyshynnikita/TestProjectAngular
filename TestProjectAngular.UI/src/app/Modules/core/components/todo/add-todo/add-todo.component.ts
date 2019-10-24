@@ -26,7 +26,7 @@ export class AddTodoComponent implements OnInit {
   }
 
   async onSubmit() {
-    this.todo.user_Id = '1';
+    this.todo.user_Id = '6';
     debugger;
     await this.todosStorageService.addTodo(this.todo);
     this.location.back();

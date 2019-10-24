@@ -70,7 +70,8 @@ namespace WeAPICore
             .AllowAnyHeader()
             .AllowAnyOrigin()
             .AllowAnyMethod()
-            .AllowCredentials());
+            .AllowCredentials()
+            .SetIsOriginAllowedToAllowWildcardSubdomains());
 
             app.UseAuthentication();
             app.UseHttpsRedirection();

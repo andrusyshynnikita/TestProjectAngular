@@ -27,7 +27,7 @@ export class TodoDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.todo.user_Id = '1';
+    this.todo.user_Id = '6';
     debugger;
     this.todosStorageService.updateTodo(this.todo);
     this.location.back();

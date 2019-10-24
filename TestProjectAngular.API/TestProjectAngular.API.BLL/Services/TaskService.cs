@@ -69,7 +69,7 @@ namespace TestProjectAngular.API.BLL.Services
         {
             var responseViewModel = new ResponseViewModel();
 
-            TaskDB task = await _taskRepository.GetItem(id);
+            TaskDB task = await _taskRepository.FindItem(id);
 
             await _taskRepository.Delete(id);
 
@@ -85,7 +85,7 @@ namespace TestProjectAngular.API.BLL.Services
 
         public async Task<TaskViewModel> DownloadAudioFile(int id)
         {
-            TaskDB taskModel = await _taskRepository.GetItem(id);
+            TaskDB taskModel = await _taskRepository.FindItem(id);
 
             var taskViewModel = _mapper.Map<TaskDB, TaskViewModel>(taskModel);
 

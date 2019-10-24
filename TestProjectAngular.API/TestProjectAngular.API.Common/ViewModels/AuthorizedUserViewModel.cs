@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TestProjectAngular.API.Common.ViewModels
 {
-    public class AuthorizedUserViewModel
+    public class UserAuthorizedViewModel
     {
         [JsonProperty("name")]
         public string Name { get; set; }

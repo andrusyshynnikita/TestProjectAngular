@@ -14,9 +14,11 @@ namespace TestProjectAngular.API.BLL
 
         public static void Setup(IServiceCollection services, IHostingEnvironment hostingEnvironment)
         {
-            services.AddAutoMapper(typeof(TaskProfile));
+            services.AddAutoMapper(typeof(TaskProfile), typeof(UserProfile));
             services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IStorageHelper>(sp => new StorageHelper(hostingEnvironment.ContentRootPath));
+            services.AddScoped<IAuthHelper, AuthHelper>();
         }
     }
 }

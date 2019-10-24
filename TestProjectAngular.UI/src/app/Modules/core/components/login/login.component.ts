@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit {
     this.authService.twitterUser$.subscribe((user) => {
       if (user.uid) {
         this.authService.authorizationToServer(user).subscribe(responce => {
-          let token = (<any>responce).token;
-          localStorage.setItem("token", token);
+          debugger;
+          let accessToken = (<any>responce).accessToken;
+          localStorage.setItem("accessToken", accessToken);
           this.router.navigate(['todoList']);
           debugger;
         });

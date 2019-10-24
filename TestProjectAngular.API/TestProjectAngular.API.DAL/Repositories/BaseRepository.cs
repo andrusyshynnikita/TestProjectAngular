@@ -17,9 +17,14 @@ namespace TestProjectAngular.API.DAL.Repositories
             DbSet = _context.Set<TEntity>();
 
         }
-        public Task<TEntity> GetItem(int id)
+        public Task<TEntity> FindItem(int id)
         {
             return DbSet.FindAsync(id);
+        }
+
+        public IQueryable<TEntity> GetItems()
+        {
+            return DbSet;
         }
 
         public async Task<TEntity> Create(TEntity entity)
@@ -38,7 +43,7 @@ namespace TestProjectAngular.API.DAL.Repositories
 
         public async Task Delete(int id)
         {
-            var item = await GetItem(id);
+            var item = await FindItem(id);
             DbSet.Remove(item);
             await SaveChanges();
         }

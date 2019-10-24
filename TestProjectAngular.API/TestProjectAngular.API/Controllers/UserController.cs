@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using TestProjectAngular.API.BLL.Interfaces;
 using TestProjectAngular.API.Common.Settings;
 using TestProjectAngular.API.Common.ViewModels;
 
@@ -18,33 +19,27 @@ namespace TestProjectAngular.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpPost]
-        public IActionResult AuthorizationUserFromTwitter([FromBody]TwitterUserViewModel twitterUser)
+        public async Task<IActionResult> AuthorizationUserFromTwitter([FromBody]TwitterUserViewModel twitterUser)
         {
             if (twitterUser == null)
             {
                 return BadRequest("Invalid client request");
             }
 
-       
+
             if (!string.IsNullOrEmpty(twitterUser.Uid))
             {
-               
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                    new Claim(ClaimTypes.Email, "test@test.com")
-                    }),
-                    Expires = DateTime.UtcNow.AddMinutes(AuthSettings.LIFETIME),
-                    SigningCredentials = new SigningCredentials(AuthSettings.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature)
-                };
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                var returnToken = tokenHandler.WriteToken(token);
+                UserAuthorizedViewModel user = await _userService.UserAuthorization(twitterUser);
 
-                //var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new { Token = returnToken });
+                return Ok(user);
             }
             else
             {

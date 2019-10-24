@@ -59,11 +59,12 @@ export class AuthService {
   authorizationToServer(user: TwitterUser): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.append('content-type', 'application/json');
+    debugger;
     return this.http.post<string>(`${this.userUri}AuthorizationUserFromTwitter`, user, httpOptions);
   }
 
   getToken(): string {
-    let result = localStorage.getItem('token');
+    let result = localStorage.getItem('accessToken');
 debugger;
     return result;
   }
