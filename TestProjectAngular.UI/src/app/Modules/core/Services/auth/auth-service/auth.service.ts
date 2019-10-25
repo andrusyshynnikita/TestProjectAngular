@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, from } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { TwitterUser } from '../../../models/twiiterResponce.model';
+import { User } from '../../../models/user.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,40 +18,41 @@ const httpOptions = {
 })
 
 export class AuthService {
-  userUri: string =
-    'http://localhost:3010/api/user/';
-  private user: Observable<firebase.User>;
-  private readonly _twitterUser = new BehaviorSubject<TwitterUser>(new TwitterUser());
-  readonly twitterUser$ = this._twitterUser.asObservable();
+  userUri: string = 'http://localhost:3010/api/user/';
+  private firebaseUser: Observable<firebase.User>;
 
-  get twitterResponce(): TwitterUser {
-    return this._twitterUser.getValue();
-  }
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
-  set twitterResponce(val: TwitterUser) {
-    this._twitterUser.next(val);
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
   }
 
   constructor(private firebaseAuth: AngularFireAuth, private http: HttpClient) {
-    this.user = firebaseAuth.authState;
-    this.user.subscribe(
-      (user) => {
-        if (user) {
-          this.twitterResponce = user.providerData[0];
-        }
-      }
-    );
-  }
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
+    this.firebaseUser = firebaseAuth.authState;
 
-  isLoggedIn() {
-    if (this._twitterUser == null) {
-      return false;
-    } else {
-      return true;
-    }
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   signInWithTwitter() {
+
+    this.firebaseUser.subscribe(
+      (twitterUser) => {
+        if (twitterUser) {
+          if (twitterUser.uid) {
+            this.authorizationToServer(twitterUser.providerData[0]).subscribe(user => {
+              debugger;
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.currentUserSubject.next(user);
+              debugger;
+            });
+          }
+        }
+      }
+    );
     return this.firebaseAuth.auth.signInWithPopup(
       new firebase.auth.TwitterAuthProvider()
     );
@@ -63,9 +65,9 @@ export class AuthService {
     return this.http.post<string>(`${this.userUri}AuthorizationUserFromTwitter`, user, httpOptions);
   }
 
-  getToken(): string {
-    let result = localStorage.getItem('accessToken');
-debugger;
-    return result;
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }

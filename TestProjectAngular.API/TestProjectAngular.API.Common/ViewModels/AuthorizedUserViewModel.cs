@@ -20,7 +20,7 @@ namespace TestProjectAngular.API.Common.ViewModels
         public string PhotoURL { get; set; }
 
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("accessToken")]
         public string AccessToken { get; set; }

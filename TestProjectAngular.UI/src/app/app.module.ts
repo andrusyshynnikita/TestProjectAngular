@@ -23,6 +23,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './Modules/core/Services/auth/token.interceptor/token.interceptor';
+import { ErrorInterceptor } from './Modules/core/Services/auth/error.interceptor/error.interceptor';
+import { AuthGuard } from './Modules/core/Services/auth/auth.guard/auth.guard';
 
 @NgModule({
   imports: [
@@ -32,8 +34,8 @@ import { TokenInterceptor } from './Modules/core/Services/auth/token.interceptor
     AngularMaterialModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      { path: 'todoList', component: TodoListComponent },
+      { path: 'login', component: LoginComponent },
+      { path: '', component: TodoListComponent, canActivate: [AuthGuard] },
       { path: 'todoDetails/:id', component: TodoDetailsComponent },
       { path: 'addTodo', component: AddTodoComponent },
     ]),
@@ -52,12 +54,9 @@ import { TokenInterceptor } from './Modules/core/Services/auth/token.interceptor
     LoginComponent,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    },
-    ],
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -88,7 +88,7 @@ export class TodosStoreService {
   }
 
   fetchAll() {
-    this.todosService.getTodos().subscribe(data =>{
+    this.todosService.getTodos().subscribe(data => {
       debugger;
       this.todos = data
     }
