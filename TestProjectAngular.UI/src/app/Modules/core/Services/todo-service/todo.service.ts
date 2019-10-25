@@ -1,39 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Todo } from '../../models/todo.model';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 
-let httpOptions = {
-  headers: new HttpHeaders({
-    'Content-type': 'application/json',
-  })
-};
+import { BaseHttpService } from '../baseHttp-service/baseHttp.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TodoService {
-  todosUrl: string =
-    'http://localhost:3010/api/tasks/';
 
-  constructor(private http: HttpClient) { }
+export class TodoService extends BaseHttpService {
+
+  constructor(http: HttpClient) {
+    super(http, 'tasks/');
+  }
 
   getTodos(): Observable<Todo[]> {
-    debugger;
-    return this.http.get<Todo[]>(`${this.todosUrl}GetTasks/6`);
+    return this.get<Todo[]>('GetTasks/6');
   }
 
   deleteTask(id: number) {
-    return this.http.delete(`${this.todosUrl}DeleteTasks/${id}`);
+    return this.delete(`DeleteTasks/${id}`);
   }
 
   toggeleCompleted(todo: Todo): Observable<any> {
-    return this.http.post<any>(`${this.todosUrl}PostTask`, todo, httpOptions);
+    return this.post<any>('PostTask', todo);
   }
 
   addTask(todo: Todo): Observable<Todo> {
-    debugger;
-    return this.http.post<Todo>(`${this.todosUrl}PostTask`, todo, httpOptions);
+    return this.post<Todo>('PostTask', todo);
   }
-
 }

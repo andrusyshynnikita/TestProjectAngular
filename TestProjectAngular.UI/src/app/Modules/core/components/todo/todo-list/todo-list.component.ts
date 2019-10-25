@@ -13,7 +13,7 @@ import { strictEqual } from 'assert';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todosTrackFn = (i, todo) => todo.id;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +21,10 @@ export class TodoListComponent implements OnInit {
     private authService: AuthService,
     public todoStorage: TodosStoreService
   ) { }
+
+  todosTrackFn(index, todo) {
+    return todo.id;
+  }
 
   share() {
     window.alert('The product has been shared!');

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { TodoService } from '../todo-service/todo.service';
 import { BehaviorSubject } from 'rxjs';
 import { Todo } from '../../models/todo.model';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +87,7 @@ export class TodosStoreService {
   }
 
   fetchAll() {
-    this.todosService.getTodos().subscribe(data => {
+    this.todosService.getTodos().pipe().subscribe(data => {
       debugger;
       this.todos = data
     }

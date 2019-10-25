@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   signInWithTwitter() {
     debugger;
     this.authService.signInWithTwitter();
-    this.authService.currentUser.subscribe((user) => {
+    this.authService.currentUser$.subscribe((user) => {
       if (user) {
         this.router.navigate(['']);
         debugger;

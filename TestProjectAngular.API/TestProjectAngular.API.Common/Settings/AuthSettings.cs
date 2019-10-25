@@ -10,7 +10,7 @@ namespace TestProjectAngular.API.Common.Settings
         public const string ISSUER = "MyAuthServer";
         public const string AUDIENCE = "http://localhost:3010/";
         public const string KEY = "MySecretKey12345!";
-        public const int LIFETIME = 2;
+        public const int LIFETIME = 1;
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
