@@ -1,0 +1,11 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <li>
+    <label>Welcome to Todo Application</label>
+  </li>
+  <li>
+    <label [textContent]="auth.currentUserValue.name"> </label>
+  </li>
+  <div>
+    <img mat-card-image class="img" [src]="auth.currentUserValue.photoURL">
+  </div>
+</div>

@@ -15,8 +15,8 @@ export class TodoService extends BaseHttpService {
     super(http, 'tasks/');
   }
 
-  getTodos(): Observable<Todo[]> {
-    return this.get<Todo[]>('GetTasks/6');
+  getTodos(userId: number): Observable<Todo[]> {
+    return this.get<Todo[]>(`GetTasks/${userId}`);
   }
 
   deleteTask(id: number) {

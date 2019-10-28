@@ -39,6 +39,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 //
 // Buttons & Indicators
@@ -98,6 +99,7 @@ const modules: any[] = [
   MatStepperModule,
   MatTabsModule,
   MatTreeModule,
+  FlexLayoutModule,
 
   MatButtonModule,
   MatButtonToggleModule,

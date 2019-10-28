@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularMaterialModule } from './Modules/angular-material/angular-material.module';
 
+
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './Modules/core/components/layout/top-bar/top-bar.component';
 import { TodoListComponent } from './Modules/core/components/todo/todo-list/todo-list.component';
@@ -14,6 +15,7 @@ import { TodoDetailsComponent } from './Modules/core/components/todo/todo-detail
 import { TodoItemComponent } from './Modules/core/components/todo/todo-item/todo-item.component';
 import { AddTodoComponent } from './Modules/core/components/todo/add-todo/add-todo.component';
 import { LoginComponent } from './Modules/core/components/login/login.component';
+import { UserInformationComponent } from './Modules/core/components/user/user-information/user-information.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
@@ -25,6 +27,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './Modules/core/Services/auth/token.interceptor/token.interceptor';
 import { ErrorInterceptor } from './Modules/core/Services/auth/error.interceptor/error.interceptor';
 import { AuthGuard } from './Modules/core/Services/auth/auth.guard/auth.guard';
+
 
 @NgModule({
   imports: [
@@ -42,7 +45,7 @@ import { AuthGuard } from './Modules/core/Services/auth/auth.guard/auth.guard';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   declarations: [
     AppComponent,
@@ -52,6 +55,7 @@ import { AuthGuard } from './Modules/core/Services/auth/auth.guard/auth.guard';
     TodoItemComponent,
     AddTodoComponent,
     LoginComponent,
+    UserInformationComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

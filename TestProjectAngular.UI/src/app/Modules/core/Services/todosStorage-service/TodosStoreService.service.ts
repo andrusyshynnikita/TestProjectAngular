@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TodoService } from '../todo-service/todo.service';
 import { BehaviorSubject } from 'rxjs';
 import { Todo } from '../../models/todo.model';
+import { AuthService } from '../auth/auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class TodosStoreService {
   private readonly _todos = new BehaviorSubject<Todo[]>([]);
   readonly todos$ = this._todos.asObservable();
 
-  constructor(private todosService: TodoService) {
+  constructor(private todosService: TodoService, private authService: AuthService) {
     this.fetchAll();
   }
 
@@ -43,7 +44,6 @@ export class TodosStoreService {
   }
 
   async removeTodo(id: number, serverRemove = true) {
-    // optimistic update
     const todo = this.todos.find(t => t.id === id);
     this.todos = this.todos.filter(todo => todo.id !== id);
 
@@ -87,10 +87,9 @@ export class TodosStoreService {
   }
 
   fetchAll() {
-    this.todosService.getTodos().pipe().subscribe(data => {
-      debugger;
-      this.todos = data
+    this.todosService.getTodos(this.authService.currentUserValue.id).pipe().subscribe(data => {
+      this.todos = data;
     }
-     );
+    );
   }
 }

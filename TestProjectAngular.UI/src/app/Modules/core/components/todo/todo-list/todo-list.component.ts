@@ -44,7 +44,6 @@ export class TodoListComponent implements OnInit {
   }
 
   showTodoDetails(todo: Todo) {
-    debugger;
     this.router.navigate(['todoDetails', todo.id]);
   }
 }

@@ -1,6 +1,6 @@
 export class Todo {
   id?: number;
-  user_Id?: string;
+  user_Id: number;
   title?: string;
   description?: string;
   status: boolean;
