@@ -31,6 +31,7 @@ namespace TestProjectAngular.API.BLL.MapperProfiles
                 .ForMember(m => m.PhoneNumber, vm => vm.MapFrom(model => model.PhoneNumber))
                 .ForMember(m => m.PhotoURL, vm => vm.MapFrom(model => model.PhotoURL))
                 .ForMember(m => m.Id, vm => vm.MapFrom(model => model.Id))
+                .ForMember(m => m.RefreshToken, vm => vm.MapFrom(model => model.RefreshToken))
                 .ForAllOtherMembers(m => m.Ignore());
         }
     }

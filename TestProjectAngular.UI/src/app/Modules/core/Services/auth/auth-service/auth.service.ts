@@ -7,6 +7,8 @@ import { BaseHttpService } from '../../baseHttp-service/baseHttp.service';
 
 import { TwitterUser } from '../../../models/twiiterResponce.model';
 import { User } from '../../../models/user.model';
+import { RefreshResponce } from '../../../models/refreshResponce.model';
+import { RefreshRequest } from '../../../models/refreshRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +40,7 @@ export class AuthService extends BaseHttpService {
         if (twitterUser) {
           if (twitterUser.uid) {
             this.authorizationToServer(twitterUser.providerData[0]).subscribe(user => {
-              localStorage.setItem('currentUser', JSON.stringify(user));
-              this.currentUserSubject.next(user);
+              this.updateCurrentUserValue(user);
             });
           }
         }
@@ -53,6 +54,18 @@ export class AuthService extends BaseHttpService {
 
   authorizationToServer(user: TwitterUser): Observable<any> {
     return this.post<User>('AuthorizationUserFromTwitter', user);
+  }
+
+  refreshAccessToken(): Observable<RefreshResponce> {
+    const refreshRequest = new RefreshRequest();
+    refreshRequest.refreshToken = this.currentUserValue.refreshToken;
+
+    return this.post<RefreshResponce>('AuthorizationWithRefreshToken', refreshRequest);
+  }
+
+  updateCurrentUserValue(user: User) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
   }
 
   logout() {

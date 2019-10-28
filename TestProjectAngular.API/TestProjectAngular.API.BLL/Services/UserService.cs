@@ -29,7 +29,7 @@ namespace TestProjectAngular.API.BLL.Services
             _authHelper = authHelper;
         }
 
-        public async Task<UserAuthorizedViewModel> UserAuthorization(TwitterUserViewModel twitterUser)
+        public async Task<UserAuthorizedViewModel> AuthorizationUser(TwitterUserViewModel twitterUser)
         {
             var authorizedUser = new UserAuthorizedViewModel();
 
@@ -38,6 +38,7 @@ namespace TestProjectAngular.API.BLL.Services
             if (user == null)
             {
                 user = _mapper.Map<UserDBModel>(twitterUser);
+                user.RefreshToken = Guid.NewGuid().ToString();
                 await _userRepository.Create(user);
             }
 
@@ -45,6 +46,30 @@ namespace TestProjectAngular.API.BLL.Services
             authorizedUser.AccessToken = _authHelper.GenerateAceessToken();
 
             return authorizedUser;
+        }
+
+        public async Task<RefreshResponce> AuthorizationUserWithRefreshToken(string refreshToken)
+        {
+            var refreshResponce = new RefreshResponce();
+
+            UserDBModel user = _userRepository.GetItems().Where(u => u.RefreshToken == refreshToken).FirstOrDefault();
+
+            if (user == null)
+            {
+                refreshResponce.IsSuccess = false;
+                refreshResponce.Message = "User not found";
+
+                return refreshResponce;
+            }
+
+            user.RefreshToken = Guid.NewGuid().ToString();
+            await _userRepository.Update(user);
+
+            refreshResponce.RefreshToken = user.RefreshToken;
+            refreshResponce.AccessToken = _authHelper.GenerateAceessToken();
+            refreshResponce.IsSuccess = true;
+
+            return refreshResponce;
         }
     }
 }

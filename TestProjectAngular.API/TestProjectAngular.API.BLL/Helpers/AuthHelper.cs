@@ -21,7 +21,7 @@ namespace TestProjectAngular.API.BLL.Helpers
                     new Claim(ClaimTypes.Email, "test@test.com")
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(AuthSettings.LIFETIME),
-                SigningCredentials = new SigningCredentials(AuthSettings.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(AuthSettings.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature),
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var returnToken = tokenHandler.WriteToken(token);

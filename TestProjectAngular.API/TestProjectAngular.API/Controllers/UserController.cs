@@ -37,9 +37,30 @@ namespace TestProjectAngular.API.Controllers
 
             if (!string.IsNullOrEmpty(twitterUser.Uid))
             {
-                UserAuthorizedViewModel user = await _userService.UserAuthorization(twitterUser);
+                UserAuthorizedViewModel user = await _userService.AuthorizationUser(twitterUser);
 
                 return Ok(user);
+            }
+            else
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AuthorizationWithRefreshToken([FromBody]RefreshRequest refreshRequest)
+        {
+            if (string.IsNullOrEmpty(refreshRequest.RefreshToken))
+            {
+                return BadRequest("Invalid client request");
+            }
+
+            RefreshResponce refreshResponce = await _userService.AuthorizationUserWithRefreshToken(refreshRequest.RefreshToken);
+
+            if (refreshResponce.IsSuccess)
+            {
+                return Ok(refreshResponce);
+
             }
             else
             {

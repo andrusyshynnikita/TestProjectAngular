@@ -8,6 +8,8 @@ namespace TestProjectAngular.API.BLL.Interfaces
 {
     public interface IUserService
     {
-        Task<UserAuthorizedViewModel> UserAuthorization(TwitterUserViewModel twitterUser);
+        Task<UserAuthorizedViewModel> AuthorizationUser(TwitterUserViewModel twitterUser);
+
+        Task<RefreshResponce> AuthorizationUserWithRefreshToken(string refreshToken);
     }
 }

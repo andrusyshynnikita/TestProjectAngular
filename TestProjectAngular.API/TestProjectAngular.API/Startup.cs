@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 using TestProjectAngular.API;
 using TestProjectAngular.API.Common.Settings;
@@ -43,7 +44,8 @@ namespace WeAPICore
                                        ValidateIssuerSigningKey = true,
                                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(AuthSettings.KEY)),
                                        ValidateIssuer = false,
-                                       ValidateAudience = false
+                                       ValidateAudience = false,
+                                       ClockSkew = TimeSpan.Zero,
                                    };
                                });
             services.AddDbContextPool<TestProjectAngularAPICoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDataBase")));
