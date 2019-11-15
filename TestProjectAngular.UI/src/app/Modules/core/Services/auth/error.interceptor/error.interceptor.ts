@@ -13,30 +13,22 @@ export class ErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) {
-        debugger;
         this.authService.refreshAccessToken().subscribe(
           (data: any) => {
-            debugger;
-            //If reload successful update tokens
             if (data.isSuccess === true) {
-              //Update tokens
               let currentUser = this.authService.currentUserValue;
               currentUser.accessToken = data.accessToken;
               currentUser.refreshToken = data.refreshToken;
               this.authService.updateCurrentUserValue(currentUser);
-              debugger;
-              //Clone our fieled request ant try to resend it
               request = request.clone({
                 setHeaders: {
                   Authorization: `Bearer ${currentUser.accessToken}`
                 }
               });
-              return next.handle(request).pipe(catchError(err => {
-                debugger;
+              return next.handle(request).pipe(catchError( err => {
                 return throwError(err);
               }));
             } else {
-              debugger;
               this.authService.logout();
               location.reload(true);
             }

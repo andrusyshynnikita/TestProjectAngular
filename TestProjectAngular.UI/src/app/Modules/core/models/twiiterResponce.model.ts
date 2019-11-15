@@ -1,4 +1,4 @@
-export class TwitterUser {
+export class SocialUser {
   displayName: string;
   email: string;
   phoneNumber: string;

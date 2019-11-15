@@ -1,6 +1,14 @@
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-  <button type="button" class="btn btn-block" (click)="signInWithTwitter()">
+<div class="container" fxLayout="column" fxLayoutAlign="center" fxFlex="20%">
+  <button class="btn btn-block btn-social btn-twitter" (click)="signInWithTwitter()">
     <i class="fab fa-twitter" aria-hidden="true"></i>
-    Login with Twitter in Todo List
+      Login with Twitter in Todo List
   </button>
-</div>
+  <button class="btn btn-block btn-social btn-facebook" (click)="signInWithFacebook()">
+    <i class="fab fa-facebook" aria-hidden="true"></i>
+      Login with Facebook in Todo List
+  </button>
+  <button class="btn btn-block btn-social btn-google" (click)="signInWithGoogle()">
+    <i class="fab fa-google" aria-hidden="true"></i>
+      Login with Google in Todo List
+  </button>
+

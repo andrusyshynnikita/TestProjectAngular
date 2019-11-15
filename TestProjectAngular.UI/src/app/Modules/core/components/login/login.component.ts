@@ -20,11 +20,49 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithTwitter() {
-    this.authService.signInWithTwitter();
-    this.authService.currentUser$.subscribe((user) => {
-      if (user) {
-        this.router.navigate(['']);
+    this.authService.signInWithFacebook()
+    .then((res) => {
+      if (res) {
+        this.authService.authorizationToServer(res.user.providerData[0]).subscribe(user => {
+          if (user) {
+            this.authService.updateCurrentUserValue(user);
+            this.router.navigate(['']);
+          }
+        });
       }
-    });
+
+      })
+    .catch((err) => console.log(err));
+  }
+
+  signInWithGoogle() {
+    this.authService.signInWithGoogle()
+    .then((res) => {
+      if (res) {
+        this.authService.authorizationToServer(res.user.providerData[0]).subscribe(user => {
+          if (user) {
+            this.authService.updateCurrentUserValue(user);
+            this.router.navigate(['']);
+          }
+        });
+      }
+      })
+    .catch((err) => console.log(err));
+  }
+
+  signInWithFacebook() {
+    this.authService.signInWithFacebook()
+    .then((res) => {
+      if (res) {
+        this.authService.authorizationToServer(res.user.providerData[0]).subscribe(user => {
+          if (user) {
+            this.authService.updateCurrentUserValue(user);
+            this.router.navigate(['']);
+          }
+        });
+      }
+
+      })
+    .catch((err) => console.log(err));
   }
 }
