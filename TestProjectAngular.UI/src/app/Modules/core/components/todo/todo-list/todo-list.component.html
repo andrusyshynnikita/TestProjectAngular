@@ -8,7 +8,7 @@
     Add Todo
   </p>
 </div>
-<div *ngFor="let todo of todoStorage.todos$ | async; trackBy: todosTrackFn" (click)="showTodoDetails(todo)">
+<div [@items] *ngFor="let todo of todoStorage.todos$ | async; trackBy: todosTrackFn" (click)="showTodoDetails(todo)">
   <app-todo-item [todo]=todo (deleteTodo)="deleteTodo($event)">
   </app-todo-item>
 </div>

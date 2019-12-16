@@ -37,10 +37,11 @@ import { AuthGuard } from './Modules/core/Services/auth/auth.guard/auth.guard';
     AngularMaterialModule,
     FormsModule,
     RouterModule.forRoot([
+      {path: '', pathMatch: 'full', redirectTo: '/home'},
       { path: 'login', component: LoginComponent },
-      { path: '', component: TodoListComponent, canActivate: [AuthGuard] },
+      { path: 'home', component: TodoListComponent, canActivate: [AuthGuard], data: { animation: 'home' } },
       { path: 'todoDetails/:id', component: TodoDetailsComponent },
-      { path: 'addTodo', component: AddTodoComponent },
+      { path: 'addTodo', component: AddTodoComponent, data: { animation: 'addTodo' } },
     ]),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),

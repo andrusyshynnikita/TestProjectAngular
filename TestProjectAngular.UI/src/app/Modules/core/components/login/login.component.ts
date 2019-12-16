@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { AuthService } from '../../Services/auth/auth-service/auth.service';
+import { runOutsideAngular } from 'angularfire2';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+     if(this.authService.currentUserValue){
+       debugger;
+      this.router.navigate(['']);
+     }
   }
 
   signInWithTwitter() {

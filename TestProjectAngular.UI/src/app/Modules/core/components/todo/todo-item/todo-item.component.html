@@ -3,7 +3,9 @@
   <h1>
     <input (change)="onToggle(todo)" [checked]="todo.status" type="checkbox"/>
     {{todo.title}}
-    <button (click)="onDelete(todo.id)" class="del">x</button>
+    <button md-fab class="del"  (click)="onDelete(todo.id)">
+      <i class="material-icons">&#xE872;</i>
+    </button>
   </h1>
 </div>
 

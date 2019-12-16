@@ -62,7 +62,6 @@ export class TodosStoreService {
     if (todo) {
       // optimistic update
       const index = this.todos.indexOf(todo);
-
       this.todos[index] = {
         ...todo,
         status: todo.status

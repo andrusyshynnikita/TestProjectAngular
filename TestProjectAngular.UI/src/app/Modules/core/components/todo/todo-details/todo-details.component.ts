@@ -7,26 +7,25 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../../../Services/auth/auth-service/auth.service';
 
 @Component({
-  selector: 'app-todo-details',
-  templateUrl: 'todo-details.component.html',
-  styleUrls: ['todo-details.component.scss']
+  selector: './app-todo-details',
+  templateUrl: './todo-details.component.html',
+  styleUrls: ['./todo-details.component.scss']
 })
 
 export class TodoDetailsComponent implements OnInit {
-
+ todo : Todo;
   @Output() addTodo: EventEmitter<any> = new EventEmitter();
-  todo: Todo;
 
   constructor(
     private todosStorageService: TodosStoreService,
     private location: Location,
     private route: ActivatedRoute,
     private auth: AuthService) {
-    this.todo = new Todo();
+      this.todo = new Todo();
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.todo = this.todosStorageService.getUserPrivateTask(id);
   }
 

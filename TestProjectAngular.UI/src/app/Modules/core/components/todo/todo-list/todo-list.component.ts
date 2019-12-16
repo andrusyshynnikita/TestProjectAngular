@@ -5,12 +5,30 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { TodosStoreService } from '../../../Services/todosStorage-service/TodosStoreService.service';
 import { AuthService } from '../../../Services/auth/auth-service/auth.service';
 import { Todo } from '../../../models/todo.model';
-import { strictEqual } from 'assert';
+import { trigger, transition, style, animation, animateChild, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
+  animations: [
+    trigger('items', [
+      transition(':enter', [
+        style({ transform: 'scale(0.5)', opacity: 0 }),  // initial
+        animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+          style({ transform: 'scale(1)', opacity: 1 }))  // final
+      ]),
+      transition(':leave', [
+        style({ transform: 'scale(1)', opacity: 1, height: '*' }),
+        animate('1s cubic-bezier(.8, -0.6, 0.2, 1.5)',
+         style({
+           transform: 'scale(0.5)', opacity: 0,
+           height: '0px', margin: '0px'
+         }))
+    ])
+  ])
+  ]
 })
 export class TodoListComponent implements OnInit {
 

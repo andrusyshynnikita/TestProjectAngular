@@ -1,4 +1,6 @@
 <div>
     <app-top-bar></app-top-bar>
-    <router-outlet></router-outlet>
+    <div [@routeAnimations]="prepareRoute(outlet)" >
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
   </div>
